@@ -14,24 +14,24 @@ int main(void)
     int p_lines = 0;        // 不完整的行数
     bool inword = false;    // 如果 c 在单词中， inword 等于 true
 
-    printf("Enter text to be analyzed (| to terminate):\n");
+    printf("Enter text to be analyzed:\n");
     while ((ch = getchar()) != EOF)
     {
         n_chars++;          // 统计字符
-        if (c == '\n')
+        if (ch == '\n')
         {
             n_lines++;      // 统计行
         }
-        if (!isspace(c) && !inword)
+        if (!isspace(ch) && !inword)
         {
             inword = true;  // 开始一个新的单词
             n_words++;      // 统计单词
         }
-        if (isspace(c) && inword)
+        if (isspace(ch) && inword)
         {
             inword = false;     // 扫描到了单词的末尾
         }
-        prev = c;               // 保持字符的值
+        prev = ch;               // 保持字符的值
     }
 
     if (prev != '\n')
