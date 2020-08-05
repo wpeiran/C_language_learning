@@ -1,9 +1,8 @@
 // rain.c -- 计算每年的总降水量、年平均降水量和5年中每月的平均降水量
+// 编程练习 —— 使用指针进行计算
 #include <stdio.h>
 #define MONTHS 12   // 一年的月份数
 #define YEARS 5     // 年数
-float year_rainfall(const float arr[][MONTHS], int rows);
-void monthly_averages(const float arr[][MONTHS], int rows);
 
 int main(void)
 {
@@ -16,51 +15,37 @@ int main(void)
         {7.2, 9.9, 8.4, 3.3, 1.2, 0.8, 0.4, 0.0, 0.6, 1.7, 4.3, 6.2},
         {7.6, 5.6, 3.8, 2.8, 3.8, 0.2, 0.0, 0.0, 0.0, 1.3, 2.6, 5.2}
     };
-    float total;
+    int year, month;
+    float subtot, total;
+    const float (*ptr)[MONTHS] = rain;    // 初始化rain的首地址给ptr指针（要类型匹配）
 
     printf(" YEAR    RAINFALL (inches)\n");
-    total = year_rainfall(rain, YEARS);
+    for (year = 0, total = 0; year < YEARS; year++)
+    {                       // 每一年，各月的降水量总和
+        for (month = 0, subtot = 0; month < MONTHS; month++)
+        {
+            // subtot += rain[year][month];    // 数组表示法
+            subtot += *(*(ptr + year) + month);  // 指针表示法
+        }
+        printf("%5d %15.1f\n", 2010 + year, subtot);
+        total += subtot;    // 5年的总降水量
+    }
     printf("\nThe yearly average is %.1f inches.\n\n", total / YEARS);
     printf("MONTHLY AVERAGES:\n\n");
     printf("  Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct");
     printf("  Now  Dec\n");
-    monthly_averages(rain, YEARS);
-
-
-
-    return 0;
-}
-
-// 打印每年的降雨量并返回年平均降雨量
-float year_rainfall(const float arr[][MONTHS], int rows)
-{
-        int year, month;
-        float subtot, total;
-
-    for (year = 0, total = 0; year < rows; year++)
-        {                       // 每一年，各月的降水量总和
-            for (month = 0, subtot = 0; month < MONTHS; month++)
-            {
-                subtot += arr[year][month];
-            }
-            printf("%5d %15.1f\n", 2010 + year, subtot);
-            total += subtot;    // 5年的总降水量
-        }
-}
-
-// 五年中每月的平均降雨量
-void monthly_averages(const float arr[][MONTHS], int rows)
-{
-    int year, month;
-    float subtot;
 
     for (month = 0; month < MONTHS; month++)
     {               // 每个月，5年的总降水量
-        for (year = 0, subtot = 0; year < rows; year++)
+        for (year = 0, subtot = 0; year < YEARS; year++)
         {
-            subtot += arr[year][month];
+            // subtot += rain[year][month];    // 数组表示法
+            subtot += *(*(ptr + year) + month);  // 指针表示法
         }
-        printf("%5.1f", subtot / rows);
+        printf("%5.1f", subtot / YEARS);
     }
     printf("\n");
+
+
+    return 0;
 }
