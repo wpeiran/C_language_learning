@@ -1,9 +1,12 @@
 // compare.c -- 比较两个字符串
 #include <stdio.h>
 #include <string.h> // strcmp() 函数的原型在该头文件中
-#define ANSWER "Grant"
+#include <ctype.h>
+#define ANSWER "GRANT"
+// #define ANSWER "Grant"
 #define SIZE 40
 char * s_gets(char * st, int n);
+void ToUpper(char * str);
 
 int main(void)
 {
@@ -12,10 +15,14 @@ int main(void)
     puts("Who is buried in Grant's tomb?");
     s_gets(try, SIZE);
     // while (strcmp(try, ANSWER) != 0)
+    ToUpper(try);
+    // puts(try);
     while (strcmp(try, ANSWER))  // 非零值都为真
     {
         puts("No, that's wrong. Try again.");
         s_gets(try, SIZE);
+        ToUpper(try);
+        // puts(try);
     }
     puts("That's right!");
 
@@ -48,4 +55,14 @@ char * s_gets(char * st, int n)
     }
 
     return ret_val;
+}
+
+// 把字符串格式化为大写
+void ToUpper(char * str)
+{
+    while (*str)
+    {
+        *str = toupper(*str);
+        str++;
+    }
 }
