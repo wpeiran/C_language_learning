@@ -2,7 +2,7 @@
 // mystrstr()函数接受两个指向字符串的指针作为参数，如果第1个字符串中包含第2个字符串，
 // 该函数返回在第1个字符串开始的地址，否则返回空指针。
 #include <stdio.h>
-#include <string.h>
+#include <string.h> // C预处理实际上是用头文件包含的内容替换#include指令。
 #define SIZE 50
 char * mystrstr(const char * s1, const char * s2);
 char * s_gets(char * st, int n);
