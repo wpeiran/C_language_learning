@@ -1,0 +1,42 @@
+THE
+FABULOUS
+PROGRAMMER
+ENCHANTED
+THE
+LARGE
+SO EVEN EDDY CAME OVEN READY.THE
+FABULOUS
+PROGRAMMER
+ENCHANTED
+THE
+LARGE
+SEND MONEY// COUNT.C -- 使用标准 I/O
+#INCLUDE <STDIO.H>
+#INCLUDE <STDLIB.H>  // 提供EXIT()的原型
+
+INT MAIN(INT ARGC, CHAR * ARGV[])
+{
+    INT CH;     // 读取文件时，储存每个字符的地方- 用INT类型的变量储存 EOF
+    FILE * FP;  // 指向文件类型的指针
+    UNSIGNED LONG COUNT = 0;
+
+    IF (ARGC != 2)
+    {
+        PRINTF("USAGE: %S FILENAME\N", ARGV[0]);
+        EXIT(EXIT_FAILURE);
+    }
+    IF ((FP = FOPEN(ARGV[1], "R")) == NULL)
+    {
+        PRINTF("CAN'T OPEN %S\N", ARGV[1]);
+        EXIT(EXIT_FAILURE); // 结束这个函数，并返回结束值
+    }
+    WHILE ((CH = GETC(FP)) != EOF)
+    {
+        PUTC(CH, STDOUT);  // 与 PUTCHAR(CH); 作用相同
+        COUNT++;
+    }
+    FCLOSE(FP);
+    PRINTF("\NFILE %S HAS %LU CHARACTERS\N", ARGV[1], COUNT);
+
+    RETURN 0;
+}
