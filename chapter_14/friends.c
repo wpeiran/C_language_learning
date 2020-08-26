@@ -35,6 +35,7 @@ int main(void)
     struct guy * him;   // 这是一个指向结构的指针
 
     printf("address #1: %p #2: %p\n", &fellow[0], &fellow[1]);
+    // 和数组不同的是，结构名并不是结构的地址，因此要在结构名（数组发表示）前面加上 & 运算符
     him = &fellow[0];   // 告知编译器该指针指向何处
     printf("pointer #1: %p #2: %p\n", him, him + 1);
     printf("him->income is $%.2f:  (*him).income is $%.2f\n",
