@@ -31,7 +31,7 @@ void InitializeList(List * plist);
 
 // 操作：       确定链表是否为空定义，plist 指向一个已初始化的链表
 // 后置条件：   如果链表为空，该函数返回 true；否则返回 false
-bool ListIsEmpty(const list *plist);
+bool ListIsEmpty(const List *plist);
 
 // 操作：       确定链表是否已满，plist 指向一个已初始化的链表
 // 后置条件：   如果链表已满，该函数返回真，否则返回假

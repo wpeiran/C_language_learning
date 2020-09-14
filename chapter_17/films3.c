@@ -2,6 +2,7 @@
 // 与 list.c 一起编译
 #include <stdio.h>
 #include <stdlib.h>  // 提供 exit() 的原型
+#include <string.h>
 #include "list.h"    // 定义 List、Item
 void showmovies(Item Item);
 char * s_gets(char * st, int n);
