@@ -4,8 +4,15 @@
 #include <stdbool.h>
 
 // 插入 Item 类型的定义，例如
-typedef int Item;       // 用于 use_q.c
+// typedef int Item;       // 用于 use_q.c
 // 或者 typedef struct item {int gumption; int charisma;} Item;
+
+// 模拟队列的结构项
+typedef struct item
+{
+    long arrive;    // 一个顾客加入队列的时间
+    int processtime;// 该顾客咨询时花费的时间
+} Item;
 
 #define MAXQUEUE 10
 
